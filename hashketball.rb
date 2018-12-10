@@ -225,23 +225,81 @@ def big_shoe_rebounds
   return rebound_count
 end
 
+#########################################################
 
+def most_points_scored
+  compare_number = 0
+  final_player = ""
+  game_hash.each do |team, team_data|
+    team_data[:players].each do |stats|
+      if stats[:points] > compare_number
+        compare_number = stats[:points]
+        final_player = stats[:player_name]
+      end
+    end
+  end
+  puts final_player
+end
+most_points_scored
 
+#########################################################
 
-# def good_practices
-#   game_hash.each do |location, team_data|
-#     binding.pry
-#       team_data.each do |attribute, data|
-#         binding.pry
-#           data.each do |data_item|
-#             binding.pry
-#           end
-#       end
-#   end
-# end
-# good_practices
+def winning_team
+  compare_number = 0
+  final_player = ""
+  final_team = ""
+  game_hash.each do |team, team_data|
+    team_data[:players].each do |stats|
+      if stats[:points] > compare_number
+        compare_number = stats[:points]
+        final_player = stats[:player_name]
+      end
+    end
+    team_data[:players].each do |stats|
+      if stats[:player_name] == final_player
+        final_team = team_data[:team_name]
+      end
+    end
+  end
+  puts final_team
+end 
+winning_team
+  
+#########################################################
 
+def player_with_longest_name
+  compare_number = 0
+  final_player = ""
+  game_hash.each do |team, team_data|
+    team_data[:players].each do |stats|
+      if stats[:player_name].length > compare_number
+        final_player = stats[:player_name]
+      end
+    end
+  end
+  puts final_player
+end
+player_with_longest_name
 
+#########################################################
 
-
-
+def long_name_steals_a_ton
+  compare_number = 0
+  longest_name_steals = 0
+  game_hash.each do |team, team_data|
+    team_data[:players].each do |stats|
+      if stats[:steals] > compare_number
+        compare_number = stats[:steals]
+      end
+      if stats[:player_name] == player_with_longest_name
+        longest_name_steals = stats[:steals]
+      end
+    end
+  end
+  if compare_number > longest_name_steals
+    puts false
+  else
+    puts true
+  end
+end
+long_name_steals_a_ton
