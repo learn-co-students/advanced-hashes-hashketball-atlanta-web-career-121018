@@ -144,6 +144,31 @@ def num_points_scored (players_name)
   end
 end
 
+###OR###
+
+#get a list of all the players
+# def player_list (game_hash)
+#   game_hash[:home][:players] + game_hash[:away][:players]
+# end
+
+# def find_player (player_name)
+#   found_player = nil
+#   player_list.find do |player|
+#     player[:player_name] == player_name
+#   end
+# end
+
+# def num_points_scored (player_name)
+#   find_player(player_name)[:points]
+# end
+
+# def shoe_size (player_number)
+  
+# end
+
+
+
+
 #########################################################
 
 def shoe_size (players_name)
