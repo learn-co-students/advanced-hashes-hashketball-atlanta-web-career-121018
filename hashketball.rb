@@ -1,8 +1,8 @@
 # require "pry"
 
-def game_hash 
+def game_hash
   {
-  :home => 
+  :home =>
   {
     :team_name => "Brooklyn Nets",
     :colors => ["Black", "White"],
@@ -23,7 +23,7 @@ def game_hash
         :number => 30,
         :shoe => 14,
         :points => 12,
-        :rebounds => 12, 
+        :rebounds => 12,
         :assists => 12,
         :steals => 12,
         :blocks => 12,
@@ -64,7 +64,7 @@ def game_hash
       }
     ]
   },
-  :away => 
+  :away =>
   {
     :team_name => "Charlotte Hornets",
     :colors => ["Turquoise", "Purple"],
@@ -123,7 +123,7 @@ def game_hash
         :steals => 22,
         :blocks => 5,
         :slam_dunks => 12
-      }  
+      }
     ]
   }
   }
@@ -131,65 +131,68 @@ end
 
 #########################################################
 
-def num_points_scored (players_name)
-  game_hash[:home][:players].each do |name|
-    if name[:player_name] == players_name
-      return name[:points]
-    end
-  end
-  game_hash[:away][:players].each do |name|
-    if name[:player_name] == players_name
-      return name[:points]
-    end
-  end
-end
-
-###OR###
-
-#get a list of all the players
-# def player_list (game_hash)
-#   game_hash[:home][:players] + game_hash[:away][:players]
-# end
-
-# def find_player (player_name)
-#   found_player = nil
-#   player_list.find do |player|
-#     player[:player_name] == player_name
+# def num_points_scored (players_name)
+#   game_hash[:home][:players].each do |name|
+#     if name[:player_name] == players_name
+#       return name[:points]
+#     end
+#   end
+#   game_hash[:away][:players].each do |name|
+#     if name[:player_name] == players_name
+#       return name[:points]
+#     end
 #   end
 # end
 
-# def num_points_scored (player_name)
-#   find_player(player_name)[:points]
-# end
+###OR###
 
-# def shoe_size (player_number)
-  
-# end
+# get a list of all the players
+def player_list #(game_hash)
+    game_hash[:home][:players] + game_hash[:away][:players]
+end
+
+def find_player (player_name)
+    found_player = nil
+    player_list.find do |player|
+        player[:player_name] == player_name
+    end
+end
+
+def num_points_scored (player_name)
+    find_player(player_name)[:points]
+end
 
 
 
 
 #########################################################
 
-def shoe_size (players_name)
-  game_hash[:home][:players].each do |name|
-    if name[:player_name] == players_name
-      return name[:shoe]
-    else
-      game_hash[:away][:players].each do |name|
-        if name[:player_name] == players_name
-          return name[:shoe]
-        end
-      end
-    end
-  end
+# return a player's shoe size
+def shoe_size(player_name)
+  find_player(player_name)[:shoe]
 end
+
+####======OR======####
+
+# def shoe_size (players_name)
+#   game_hash[:home][:players].each do |name|
+#     if name[:player_name] == players_name
+#       return name[:shoe]
+#     else
+#       game_hash[:away][:players].each do |name|
+#         if name[:player_name] == players_name
+#           return name[:shoe]
+#         end
+#       end
+#     end
+#   end
+# end
 
 #########################################################
 
 def team_colors (team_name)
   game_hash.each do |team, team_data|
-    if team_data[:team_name] == team_name 
+    if team_data[:team_name] == team_name
       return team_data[:colors]
     end
   end
@@ -200,7 +203,7 @@ end
 def team_names
   final_names = []
   game_hash.each do |team, team_data|
-    final_names << team_data[:team_name] 
+    final_names << team_data[:team_name]
   end
   return final_names
 end
@@ -210,7 +213,7 @@ end
 def player_numbers (team_name)
   final_players_numbers_array = []
   game_hash.each do |team, team_data|
-    if team_data[:team_name] == team_name 
+    if team_data[:team_name] == team_name
       team_data[:players].each do |data_title, data|
         final_players_numbers_array << data_title[:number]
       end
@@ -287,9 +290,9 @@ def winning_team
     end
   end
   puts final_team
-end 
+end
 winning_team
-  
+
 #########################################################
 
 def player_with_longest_name
